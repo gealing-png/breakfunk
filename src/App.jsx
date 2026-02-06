@@ -1,7 +1,7 @@
 import React, { useState } from ‘react’;
 import { Zap, Brain, Activity, Wind, Droplets, Apple, Coffee, Music, Book, Dumbbell, Sun, Snowflake, AlertCircle } from ‘lucide-react’;
 
-export default function Acedia() {
+export default function App() {
 const [currentView, setCurrentView] = useState(‘intro’);
 const [selectedCategory, setSelectedCategory] = useState(null);
 const [currentActivity, setCurrentActivity] = useState(null);
