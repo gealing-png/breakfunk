@@ -292,7 +292,7 @@ export default function App() {
         </div>
 
         <div className="text-center mt-6 text-gray-600 text-sm">
-          <p>Breaking free from boredom, one action at a time 🌟</p>
+          <p>Breaking free from boredom, one action at a time 🚀</p>
         </div>
       </div>
     </div>
