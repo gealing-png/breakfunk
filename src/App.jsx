@@ -162,23 +162,13 @@ export default function App() {
   );
 
   const MainView = () => (
-   <section id="main-tools" className="space-y-6">
-        <div className="text-center space-y-2">
-    <h1 className="text-3xl font-bold text-gray-800">
-  ADHD Dopamine Tools & Restlessness Interventions
-    </h1>
-    <p className="text-sm text-gray-700 leading-relaxed">
-  Explore fast-acting ADHD-friendly interventions designed to boost dopamine,
-  reduce restlessness, and break boredom paralysis. Choose from physical,
-  sensory, breathwork, nutrition, mental and social tools.
-</p>
-       
+    <div className="space-y-6">
+      <div className="text-center space-y-2">
+        <h1 className="text-3xl font-bold text-gray-800">BreakFunk</h1>
+        <p className="text-gray-600">Choose your intervention or hit emergency</p>
       </div>
 
       <button
-         id={`category-${key}`}
-        key={key}
-        onClick={() => handleCategoryClick(key)}       
         onClick={handleEmergencyButton}
         className="w-full bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold py-6 rounded-2xl transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-3"
       >
