@@ -1,4 +1,4 @@
-# BreakFunk: Your ADHD & Dopamine Management Toolkit
+## BreakFunk: Your ADHD & Dopamine Management Toolkit
 
 ## Understanding ADHD Challenges
 Attention-deficit/hyperactivity disorder (ADHD) presents significant challenges for those affected, influencing daily activities, work, and relationships. Understanding ADHD is essential for identifying effective management strategies to lead healthier lives.
