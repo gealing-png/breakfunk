@@ -1,12 +1,6 @@
-import React from 'react';
 import React, { useState } from 'react';
 import { Zap, Brain, Activity, Wind, Droplets, Apple, Coffee, Music, Book, Dumbbell, Sun, Snowflake, AlertCircle } from 'lucide-react';
 
-function App() {
-  return (
-    <div style={{ padding: '20px', fontFamily: 'Arial' }}>
-      <h1>BreakFunk - Coming Soon!</h1>
-      <p>ADHD Toolkit to break free from boredom</p>
 export default function App() {
   const [currentView, setCurrentView] = useState('intro');
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -166,9 +160,7 @@ export default function App() {
       </button>
     </div>
   );
-}
 
-export default App;
   const MainView = () => (
     <div className="space-y-6">
       <div className="text-center space-y-2">
