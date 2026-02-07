@@ -1,1 +1,0 @@
-User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /private\nSitemap: https://breakfunk.com/sitemap.xml\nCrawl-delay: 10\nCrawl-delay: 30
