@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /*.json$
+
+Sitemap: https://breakfunk.app/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Crawl-delay: 1
