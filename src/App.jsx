@@ -1,4 +1,3 @@
-@@ -1,14 +1,300 @@
 import React from 'react';
 import React, { useState } from 'react';
 import { Zap, Brain, Activity, Wind, Droplets, Apple, Coffee, Music, Book, Dumbbell, Sun, Snowflake, AlertCircle } from 'lucide-react';
