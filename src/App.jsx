@@ -80,6 +80,13 @@ export default function App() {
 
   const IntroView = () => (
     <div className="space-y-6">
+      {/* Disclaimer */}
+      <div className={`${adhdMode ? 'bg-slate-700 border-slate-600' : 'bg-blue-50 border-blue-200'} border-2 rounded-xl p-4`}>
+        <p className={`text-xs ${adhdMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}>
+          <strong>Disclaimer:</strong> This site shares personal strategies and suggestions that have helped me manage boredom and restlessness. This is not medical advice, and I'm not a healthcare professional. These activities may not work for everyone. Please consult with a qualified healthcare provider before making changes to your health routine, especially if you have ADHD or other medical conditions.
+        </p>
+      </div>
+
       <div className="text-center space-y-3">
         <Brain className={`w-16 h-16 mx-auto ${adhdMode ? 'text-slate-400' : 'text-purple-500'}`} />
         <div className="space-y-2">
@@ -119,7 +126,7 @@ export default function App() {
         <div className={`${adhdMode ? 'bg-slate-700 border-slate-500' : 'bg-gradient-to-br from-orange-50 to-red-50 border-orange-300'} rounded-2xl p-6 border-2 animate-pulse`}>
           <div className="flex items-center gap-3 mb-3">
             <Zap className={`w-8 h-8 ${adhdMode ? 'text-orange-400' : 'text-orange-600'}`} />
-            <h3 className={`text-2xl font-bold ${adhdMode ? 'text-gray-100' : 'text-gray-800'}`}>Your Emergency Activity:</h3>
+            <h3 className={`text-2xl font-bold ${adhdMode ? 'text-gray-100' : 'text-gray-800'}`}>Suggested Activity:</h3>
           </div>
           <div className={`${adhdMode ? 'bg-slate-600' : 'bg-white'} rounded-xl p-4 space-y-2`}>
             <div className="flex items-center gap-2">
@@ -129,7 +136,7 @@ export default function App() {
             <p className={`${adhdMode ? 'text-gray-300' : 'text-gray-600'}`}>Duration: {currentActivity.duration}</p>
             <p className={`text-sm font-medium ${adhdMode ? 'text-emerald-400' : 'text-green-700'}`}>✓ {currentActivity.benefit}</p>
           </div>
-          <p className={`text-center mt-4 font-medium ${adhdMode ? 'text-gray-200' : 'text-gray-700'}`}>Do it RIGHT NOW. No thinking, just action!</p>
+          <p className={`text-center mt-4 font-medium ${adhdMode ? 'text-gray-200' : 'text-gray-700'}`}>Try this if it feels right. Sometimes just taking action can help!</p>
         </div>
       )}
 
@@ -141,46 +148,46 @@ export default function App() {
 
         <div className={`space-y-3 ${adhdMode ? 'text-gray-200' : 'text-gray-700'}`}>
           <p className="leading-relaxed">
-            When you're feeling bored or restless, for some people, like Me, this can feel overwhelming, even painful (especially prevalent with ADHD), your brain is likely experiencing <strong>low dopamine</strong>.
-            Dopamine is your brain's "motivation molecule" - it helps you focus, feel pleasure, and take action.
+            When you're feeling bored or restless, for some people like me, this can feel overwhelming, even painful (especially prevalent with ADHD). Based on my understanding, this may be related to <strong>low dopamine</strong>.
+            Dopamine is often called your brain's "motivation molecule" - it's thought to help with focus, pleasure, and taking action.
           </p>
 
           <div className={`${adhdMode ? 'bg-slate-600' : 'bg-white'} rounded-xl p-4 space-y-2`}>
-            <h3 className={`font-semibold text-lg ${adhdMode ? 'text-gray-100' : 'text-purple-700'}`}>The "ADHD-like" Brain Challenge:</h3>
+            <h3 className={`font-semibold text-lg ${adhdMode ? 'text-gray-100' : 'text-purple-700'}`}>Understanding the Challenge:</h3>
             <ul className={`space-y-2 text-sm ${adhdMode ? 'text-gray-200' : ''}`}>
               <li className="flex items-start gap-2">
                 <span className={`${adhdMode ? 'text-slate-400' : 'text-purple-500'} mt-1`}>•</span>
-                <span><strong>Lower baseline dopamine</strong> - Makes it harder to initiate tasks and maintain focus</span>
+                <span>Some research suggests that lower baseline dopamine can make it harder to initiate tasks and maintain focus</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className={`${adhdMode ? 'text-slate-400' : 'text-purple-500'} mt-1`}>•</span>
-                <span><strong>Dopamine transporter overactivity</strong> - Reabsorbs dopamine too quickly, leaving you feeling "meh"</span>
+                <span>For some people, dopamine may be reabsorbed more quickly, potentially contributing to restlessness</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className={`${adhdMode ? 'text-slate-400' : 'text-purple-500'} mt-1`}>•</span>
-                <span><strong>Prefrontal cortex underactivity</strong> - The "control center" struggles without enough dopamine</span>
+                <span>The prefrontal cortex may benefit from adequate dopamine for decision-making and impulse control</span>
               </li>
             </ul>
           </div>
 
           <div className={`${adhdMode ? 'bg-slate-600' : 'bg-white'} rounded-xl p-4 space-y-2`}>
-            <h3 className={`font-semibold text-lg ${adhdMode ? 'text-emerald-400' : 'text-green-700'}`}>How These Activities Help:</h3>
+            <h3 className={`font-semibold text-lg ${adhdMode ? 'text-emerald-400' : 'text-green-700'}`}>Why I Find These Activities Helpful:</h3>
             <ul className={`space-y-2 text-sm ${adhdMode ? 'text-gray-200' : ''}`}>
               <li className="flex items-start gap-2">
                 <span className={`${adhdMode ? 'text-emerald-400' : 'text-green-500'} mt-1`}>•</span>
-                <span><strong>Immediate dopamine boost</strong> - Activities like cold showers, exercise, and breathwork trigger rapid dopamine release</span>
+                <span>Activities like cold showers and exercise may help boost mood and energy</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className={`${adhdMode ? 'text-emerald-400' : 'text-green-500'} mt-1`}>•</span>
-                <span><strong>2-hour mood lift</strong> - Many interventions provide sustained dopamine elevation, improving focus and motivation</span>
+                <span>Many of these interventions have helped me feel more focused and motivated for a couple hours</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className={`${adhdMode ? 'text-emerald-400' : 'text-green-500'} mt-1`}>•</span>
-                <span><strong>Enhanced prefrontal cortex function</strong> - Better decision-making, impulse control, and executive function</span>
+                <span>I've found these strategies can support better decision-making and self-control</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className={`${adhdMode ? 'text-emerald-400' : 'text-green-500'} mt-1`}>•</span>
-                <span><strong>Breaking the pattern</strong> - Novel activities create new neural pathways and interrupt rumination</span>
+                <span>Novel activities seem to help break negative thought patterns and create mental shifts</span>
               </li>
             </ul>
           </div>
@@ -193,8 +200,8 @@ export default function App() {
           <div className="space-y-2">
             <h3 className={`font-semibold ${adhdMode ? 'text-gray-100' : 'text-amber-900'}`}>The Emergency Button</h3>
             <p className={`text-sm ${adhdMode ? 'text-gray-200' : 'text-amber-800'}`}>
-              Feeling totally stuck? Hit the emergency button above for an instant, random intervention.
-              Sometimes the best thing is to just <em>do something</em> - anything - to break the cycle.
+              Feeling totally stuck? The emergency button gives you a random suggestion to try.
+              Sometimes just <em>doing something</em> - anything - can help break the cycle. You decide what feels right for you.
             </p>
           </div>
         </div>
@@ -221,7 +228,7 @@ export default function App() {
 
       <div className="text-center space-y-2">
         <h1 className={`text-3xl font-bold ${adhdMode ? 'text-gray-100' : 'text-gray-800'}`}>BreakFunk</h1>
-        <p className={`${adhdMode ? 'text-gray-300' : 'text-gray-600'}`}>Choose your intervention or hit emergency</p>
+        <p className={`${adhdMode ? 'text-gray-300' : 'text-gray-600'}`}>Choose a suggestion or try emergency mode</p>
       </div>
 
       <button
@@ -236,7 +243,7 @@ export default function App() {
         <div className={`${adhdMode ? 'bg-slate-700 border-slate-500' : 'bg-gradient-to-br from-orange-50 to-red-50 border-orange-300'} rounded-2xl p-6 border-2 animate-pulse`}>
           <div className="flex items-center gap-3 mb-3">
             <Zap className={`w-8 h-8 ${adhdMode ? 'text-orange-400' : 'text-orange-600'}`} />
-            <h3 className={`text-2xl font-bold ${adhdMode ? 'text-gray-100' : 'text-gray-800'}`}>Your Emergency Activity:</h3>
+            <h3 className={`text-2xl font-bold ${adhdMode ? 'text-gray-100' : 'text-gray-800'}`}>Suggested Activity:</h3>
           </div>
           <div className={`${adhdMode ? 'bg-slate-600' : 'bg-white'} rounded-xl p-4 space-y-2`}>
             <div className="flex items-center gap-2">
@@ -246,7 +253,7 @@ export default function App() {
             <p className={`${adhdMode ? 'text-gray-300' : 'text-gray-600'}`}>Duration: {currentActivity.duration}</p>
             <p className={`text-sm font-medium ${adhdMode ? 'text-emerald-400' : 'text-green-700'}`}>✓ {currentActivity.benefit}</p>
           </div>
-          <p className={`text-center mt-4 font-medium ${adhdMode ? 'text-gray-200' : 'text-gray-700'}`}>Do it RIGHT NOW. No thinking, just action!</p>
+          <p className={`text-center mt-4 font-medium ${adhdMode ? 'text-gray-200' : 'text-gray-700'}`}>Try this if it feels right. Sometimes just taking action can help!</p>
         </div>
       )}
 
