@@ -111,8 +111,8 @@ export default function App() {
         onClick={handleEmergencyButton}
         className="w-full bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold py-6 rounded-2xl transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-3"
       >
-        <Zap className="w-8 h-8" />
-        <span className="text-xl">EMERGENCY: Break the Funk NOW</span>
+        <Zap className="w-6 h-6 sm:w-8 sm:h-8" />
+        <span className="text-base sm:text-xl">EMERGENCY: Break the Funk NOW</span>
       </button>
 
       {showEmergencyResult && currentActivity && (
@@ -228,8 +228,8 @@ export default function App() {
         onClick={handleEmergencyButton}
         className="w-full bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold py-6 rounded-2xl transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-3"
       >
-        <Zap className="w-8 h-8" />
-        <span className="text-xl">EMERGENCY: Break the Funk NOW</span>
+        <Zap className="w-6 h-6 sm:w-8 sm:h-8" />
+        <span className="text-base sm:text-xl">EMERGENCY: Break the Funk NOW</span>
       </button>
 
       {showEmergencyResult && currentActivity && (
@@ -355,9 +355,9 @@ export default function App() {
       adhdMode 
         ? 'bg-gradient-to-br from-gray-700 via-slate-700 to-zinc-700' 
         : 'bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100'
-    } p-6`}>
+    } p-4 sm:p-6`}>
       <div className="max-w-2xl mx-auto">
-        <div className={`${adhdMode ? 'bg-slate-800' : 'bg-white'} rounded-3xl shadow-2xl p-8`}>
+        <div className={`${adhdMode ? 'bg-slate-800' : 'bg-white'} rounded-3xl shadow-2xl p-6 sm:p-8`}>
           {currentView === 'intro' && <IntroView />}
           {currentView === 'main' && <MainView />}
           {currentView === 'category' && <CategoryView />}
