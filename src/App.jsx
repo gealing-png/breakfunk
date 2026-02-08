@@ -93,12 +93,12 @@ export default function App() {
 
         <div className="space-y-3 text-gray-700">
           <p className="leading-relaxed">
-            When you're feeling bored or restless (especially with ADHD), your brain is experiencing <strong>low dopamine</strong>.
+            When you're feeling bored or restless, for some people, like Me, this can feel overwhelming, even painful (especially prevelent with ADHD), your brain is likely experiencing <strong>low dopamine</strong>.
             Dopamine is your brain's "motivation molecule" - it helps you focus, feel pleasure, and take action.
           </p>
 
           <div className="bg-white rounded-xl p-4 space-y-2">
-            <h3 className="font-semibold text-lg text-purple-700">The ADHD Brain Challenge:</h3>
+            <h3 className="font-semibold text-lg text-purple-700">The "ADHD-like" Brain Challenge:</h3>
             <ul className="space-y-2 text-sm">
               <li className="flex items-start gap-2">
                 <span className="text-purple-500 mt-1">•</span>
