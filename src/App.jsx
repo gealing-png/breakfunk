@@ -6,6 +6,7 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [currentActivity, setCurrentActivity] = useState(null);
   const [showEmergencyResult, setShowEmergencyResult] = useState(false);
+  const [adhdMode, setAdhdMode] = useState(false);
 
   const activities = {
     physical: [
@@ -51,12 +52,12 @@ export default function App() {
   };
 
   const categoryInfo = {
-    physical: { name: "Physical Movement", icon: Dumbbell, color: "bg-red-500", description: "Get your body moving to boost dopamine and endorphins" },
-    breathwork: { name: "Breathwork", icon: Wind, color: "bg-blue-500", description: "Regulate your nervous system and increase oxygen flow" },
-    sensory: { name: "Sensory Reset", icon: Snowflake, color: "bg-cyan-500", description: "Shock your system awake with intense sensory experiences" },
-    nutrition: { name: "Nutrition & Hydration", icon: Apple, color: "bg-green-500", description: "Fuel your brain with what it needs to function" },
-    mental: { name: "Mental Engagement", icon: Brain, color: "bg-purple-500", description: "Challenge your mind with novel learning and creativity" },
-    social: { name: "Social Connection", icon: Activity, color: "bg-pink-500", description: "Connect with others to boost oxytocin and belonging" },
+    physical: { name: "Physical Movement", icon: Dumbbell, color: adhdMode ? "bg-slate-600" : "bg-red-500", description: "Get your body moving to boost dopamine and endorphins" },
+    breathwork: { name: "Breathwork", icon: Wind, color: adhdMode ? "bg-slate-700" : "bg-blue-500", description: "Regulate your nervous system and increase oxygen flow" },
+    sensory: { name: "Sensory Reset", icon: Snowflake, color: adhdMode ? "bg-slate-500" : "bg-cyan-500", description: "Shock your system awake with intense sensory experiences" },
+    nutrition: { name: "Nutrition & Hydration", icon: Apple, color: adhdMode ? "bg-stone-600" : "bg-green-500", description: "Fuel your brain with what it needs to function" },
+    mental: { name: "Mental Engagement", icon: Brain, color: adhdMode ? "bg-gray-700" : "bg-purple-500", description: "Challenge your mind with novel learning and creativity" },
+    social: { name: "Social Connection", icon: Activity, color: adhdMode ? "bg-zinc-600" : "bg-pink-500", description: "Connect with others to boost oxytocin and belonging" },
   };
 
   const handleEmergencyButton = () => {
@@ -80,58 +81,105 @@ export default function App() {
   const IntroView = () => (
     <div className="space-y-6">
       <div className="text-center space-y-3">
-        <Brain className="w-16 h-16 mx-auto text-purple-500" />
-        <h1 className="text-4xl font-bold text-gray-800">Welcome to BreakFunk</h1>
-        <p className="text-xl text-gray-600">Your toolkit for breaking free from boredom and restlessness</p>
+        <Brain className={`w-16 h-16 mx-auto ${adhdMode ? 'text-slate-400' : 'text-purple-500'}`} />
+        <div className="space-y-2">
+          <h1 className={`text-4xl font-bold ${adhdMode ? 'text-gray-100' : 'text-gray-800'}`}>Welcome to BreakFunk</h1>
+          <div className="flex items-center justify-center gap-3">
+            <p className={`text-xl ${adhdMode ? 'text-gray-300' : 'text-gray-600'}`}>Your toolkit for breaking free from boredom and restlessness</p>
+          </div>
+          {/* Eyeball Friendly Toggle integrated into welcome */}
+          <div className="flex items-center justify-center gap-2 pt-2">
+            <span className={`text-sm ${adhdMode ? 'text-gray-400' : 'text-gray-500'}`}>Eyeball Friendly</span>
+            <button
+              onClick={() => setAdhdMode(!adhdMode)}
+              className={`relative w-12 h-6 rounded-full transition-colors ${
+                adhdMode ? 'bg-slate-600' : 'bg-gray-300'
+              }`}
+            >
+              <div
+                className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform ${
+                  adhdMode ? 'transform translate-x-6' : ''
+                }`}
+              />
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl p-6 space-y-4">
-        <h2 className="text-2xl font-semibold text-gray-800 flex items-center gap-2">
-          <Brain className="w-6 h-6 text-purple-600" />
+      {/* Emergency Button on Intro Screen */}
+      <button
+        onClick={handleEmergencyButton}
+        className="w-full bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold py-6 rounded-2xl transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-3"
+      >
+        <Zap className="w-8 h-8" />
+        <span className="text-xl">EMERGENCY: Break the Funk NOW</span>
+      </button>
+
+      {showEmergencyResult && currentActivity && (
+        <div className={`${adhdMode ? 'bg-slate-700 border-slate-500' : 'bg-gradient-to-br from-orange-50 to-red-50 border-orange-300'} rounded-2xl p-6 border-2 animate-pulse`}>
+          <div className="flex items-center gap-3 mb-3">
+            <Zap className={`w-8 h-8 ${adhdMode ? 'text-orange-400' : 'text-orange-600'}`} />
+            <h3 className={`text-2xl font-bold ${adhdMode ? 'text-gray-100' : 'text-gray-800'}`}>Your Emergency Activity:</h3>
+          </div>
+          <div className={`${adhdMode ? 'bg-slate-600' : 'bg-white'} rounded-xl p-4 space-y-2`}>
+            <div className="flex items-center gap-2">
+              <currentActivity.icon className={`w-6 h-6 ${adhdMode ? 'text-orange-400' : 'text-orange-600'}`} />
+              <h4 className={`text-xl font-semibold ${adhdMode ? 'text-gray-100' : 'text-gray-800'}`}>{currentActivity.name}</h4>
+            </div>
+            <p className={`${adhdMode ? 'text-gray-300' : 'text-gray-600'}`}>Duration: {currentActivity.duration}</p>
+            <p className={`text-sm font-medium ${adhdMode ? 'text-emerald-400' : 'text-green-700'}`}>✓ {currentActivity.benefit}</p>
+          </div>
+          <p className={`text-center mt-4 font-medium ${adhdMode ? 'text-gray-200' : 'text-gray-700'}`}>Do it RIGHT NOW. No thinking, just action!</p>
+        </div>
+      )}
+
+      <div className={`${adhdMode ? 'bg-slate-700' : 'bg-gradient-to-br from-purple-50 to-blue-50'} rounded-2xl p-6 space-y-4`}>
+        <h2 className={`text-2xl font-semibold ${adhdMode ? 'text-gray-100' : 'text-gray-800'} flex items-center gap-2`}>
+          <Brain className={`w-6 h-6 ${adhdMode ? 'text-slate-400' : 'text-purple-600'}`} />
           What's Happening in Your Brain?
         </h2>
 
-        <div className="space-y-3 text-gray-700">
+        <div className={`space-y-3 ${adhdMode ? 'text-gray-200' : 'text-gray-700'}`}>
           <p className="leading-relaxed">
             When you're feeling bored or restless, for some people, like Me, this can feel overwhelming, even painful (especially prevalent with ADHD), your brain is likely experiencing <strong>low dopamine</strong>.
             Dopamine is your brain's "motivation molecule" - it helps you focus, feel pleasure, and take action.
           </p>
 
-          <div className="bg-white rounded-xl p-4 space-y-2">
-            <h3 className="font-semibold text-lg text-purple-700">The "ADHD-like" Brain Challenge:</h3>
-            <ul className="space-y-2 text-sm">
+          <div className={`${adhdMode ? 'bg-slate-600' : 'bg-white'} rounded-xl p-4 space-y-2`}>
+            <h3 className={`font-semibold text-lg ${adhdMode ? 'text-gray-100' : 'text-purple-700'}`}>The "ADHD-like" Brain Challenge:</h3>
+            <ul className={`space-y-2 text-sm ${adhdMode ? 'text-gray-200' : ''}`}>
               <li className="flex items-start gap-2">
-                <span className="text-purple-500 mt-1">•</span>
+                <span className={`${adhdMode ? 'text-slate-400' : 'text-purple-500'} mt-1`}>•</span>
                 <span><strong>Lower baseline dopamine</strong> - Makes it harder to initiate tasks and maintain focus</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-purple-500 mt-1">•</span>
+                <span className={`${adhdMode ? 'text-slate-400' : 'text-purple-500'} mt-1`}>•</span>
                 <span><strong>Dopamine transporter overactivity</strong> - Reabsorbs dopamine too quickly, leaving you feeling "meh"</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-purple-500 mt-1">•</span>
+                <span className={`${adhdMode ? 'text-slate-400' : 'text-purple-500'} mt-1`}>•</span>
                 <span><strong>Prefrontal cortex underactivity</strong> - The "control center" struggles without enough dopamine</span>
               </li>
             </ul>
           </div>
 
-          <div className="bg-white rounded-xl p-4 space-y-2">
-            <h3 className="font-semibold text-lg text-green-700">How These Activities Help:</h3>
-            <ul className="space-y-2 text-sm">
+          <div className={`${adhdMode ? 'bg-slate-600' : 'bg-white'} rounded-xl p-4 space-y-2`}>
+            <h3 className={`font-semibold text-lg ${adhdMode ? 'text-emerald-400' : 'text-green-700'}`}>How These Activities Help:</h3>
+            <ul className={`space-y-2 text-sm ${adhdMode ? 'text-gray-200' : ''}`}>
               <li className="flex items-start gap-2">
-                <span className="text-green-500 mt-1">•</span>
+                <span className={`${adhdMode ? 'text-emerald-400' : 'text-green-500'} mt-1`}>•</span>
                 <span><strong>Immediate dopamine boost</strong> - Activities like cold showers, exercise, and breathwork trigger rapid dopamine release</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-500 mt-1">•</span>
+                <span className={`${adhdMode ? 'text-emerald-400' : 'text-green-500'} mt-1`}>•</span>
                 <span><strong>2-hour mood lift</strong> - Many interventions provide sustained dopamine elevation, improving focus and motivation</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-500 mt-1">•</span>
+                <span className={`${adhdMode ? 'text-emerald-400' : 'text-green-500'} mt-1`}>•</span>
                 <span><strong>Enhanced prefrontal cortex function</strong> - Better decision-making, impulse control, and executive function</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-500 mt-1">•</span>
+                <span className={`${adhdMode ? 'text-emerald-400' : 'text-green-500'} mt-1`}>•</span>
                 <span><strong>Breaking the pattern</strong> - Novel activities create new neural pathways and interrupt rumination</span>
               </li>
             </ul>
@@ -139,13 +187,13 @@ export default function App() {
         </div>
       </div>
 
-      <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-4">
+      <div className={`${adhdMode ? 'bg-slate-700 border-slate-600' : 'bg-amber-50 border-amber-200'} border-2 rounded-xl p-4`}>
         <div className="flex items-start gap-3">
-          <AlertCircle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-1" />
+          <AlertCircle className={`w-6 h-6 ${adhdMode ? 'text-slate-400' : 'text-amber-600'} flex-shrink-0 mt-1`} />
           <div className="space-y-2">
-            <h3 className="font-semibold text-amber-900">The Emergency Button</h3>
-            <p className="text-sm text-amber-800">
-              Feeling totally stuck? Hit the emergency button below for an instant, random intervention.
+            <h3 className={`font-semibold ${adhdMode ? 'text-gray-100' : 'text-amber-900'}`}>The Emergency Button</h3>
+            <p className={`text-sm ${adhdMode ? 'text-gray-200' : 'text-amber-800'}`}>
+              Feeling totally stuck? Hit the emergency button above for an instant, random intervention.
               Sometimes the best thing is to just <em>do something</em> - anything - to break the cycle.
             </p>
           </div>
@@ -154,7 +202,7 @@ export default function App() {
 
       <button
         onClick={() => setCurrentView('main')}
-        className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-4 rounded-xl transition-colors"
+        className={`w-full ${adhdMode ? 'bg-slate-600 hover:bg-slate-500' : 'bg-purple-600 hover:bg-purple-700'} text-white font-semibold py-4 rounded-xl transition-colors`}
       >
         Let's Break the Funk
       </button>
@@ -163,9 +211,17 @@ export default function App() {
 
   const MainView = () => (
     <div className="space-y-6">
+      {/* Back button at TOP */}
+      <button
+        onClick={() => setCurrentView('intro')}
+        className={`${adhdMode ? 'text-gray-300 hover:text-gray-100' : 'text-purple-600 hover:text-purple-700'} font-medium`}
+      >
+        ← Back to Brain Science
+      </button>
+
       <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold text-gray-800">BreakFunk</h1>
-        <p className="text-gray-600">Choose your intervention or hit emergency</p>
+        <h1 className={`text-3xl font-bold ${adhdMode ? 'text-gray-100' : 'text-gray-800'}`}>BreakFunk</h1>
+        <p className={`${adhdMode ? 'text-gray-300' : 'text-gray-600'}`}>Choose your intervention or hit emergency</p>
       </div>
 
       <button
@@ -177,20 +233,20 @@ export default function App() {
       </button>
 
       {showEmergencyResult && currentActivity && (
-        <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-6 border-2 border-orange-300 animate-pulse">
+        <div className={`${adhdMode ? 'bg-slate-700 border-slate-500' : 'bg-gradient-to-br from-orange-50 to-red-50 border-orange-300'} rounded-2xl p-6 border-2 animate-pulse`}>
           <div className="flex items-center gap-3 mb-3">
-            <Zap className="w-8 h-8 text-orange-600" />
-            <h3 className="text-2xl font-bold text-gray-800">Your Emergency Activity:</h3>
+            <Zap className={`w-8 h-8 ${adhdMode ? 'text-orange-400' : 'text-orange-600'}`} />
+            <h3 className={`text-2xl font-bold ${adhdMode ? 'text-gray-100' : 'text-gray-800'}`}>Your Emergency Activity:</h3>
           </div>
-          <div className="bg-white rounded-xl p-4 space-y-2">
+          <div className={`${adhdMode ? 'bg-slate-600' : 'bg-white'} rounded-xl p-4 space-y-2`}>
             <div className="flex items-center gap-2">
-              <currentActivity.icon className="w-6 h-6 text-orange-600" />
-              <h4 className="text-xl font-semibold text-gray-800">{currentActivity.name}</h4>
+              <currentActivity.icon className={`w-6 h-6 ${adhdMode ? 'text-orange-400' : 'text-orange-600'}`} />
+              <h4 className={`text-xl font-semibold ${adhdMode ? 'text-gray-100' : 'text-gray-800'}`}>{currentActivity.name}</h4>
             </div>
-            <p className="text-gray-600">Duration: {currentActivity.duration}</p>
-            <p className="text-sm text-green-700 font-medium">✓ {currentActivity.benefit}</p>
+            <p className={`${adhdMode ? 'text-gray-300' : 'text-gray-600'}`}>Duration: {currentActivity.duration}</p>
+            <p className={`text-sm font-medium ${adhdMode ? 'text-emerald-400' : 'text-green-700'}`}>✓ {currentActivity.benefit}</p>
           </div>
-          <p className="text-center mt-4 text-gray-700 font-medium">Do it RIGHT NOW. No thinking, just action!</p>
+          <p className={`text-center mt-4 font-medium ${adhdMode ? 'text-gray-200' : 'text-gray-700'}`}>Do it RIGHT NOW. No thinking, just action!</p>
         </div>
       )}
 
@@ -206,13 +262,6 @@ export default function App() {
           </button>
         ))}
       </div>
-
-      <button
-        onClick={() => setCurrentView('intro')}
-        className="w-full text-purple-600 hover:text-purple-700 font-medium py-2"
-      >
-        ← Back to Brain Science
-      </button>
     </div>
   );
 
@@ -222,6 +271,7 @@ export default function App() {
 
     return (
       <div className="space-y-6">
+        {/* Back button at TOP */}
         <div className="space-y-3">
           <button
             onClick={() => {
@@ -229,7 +279,7 @@ export default function App() {
               setSelectedCategory(null);
               setCurrentActivity(null);
             }}
-            className="text-purple-600 hover:text-purple-700 font-medium"
+            className={`${adhdMode ? 'text-gray-300 hover:text-gray-100' : 'text-purple-600 hover:text-purple-700'} font-medium`}
           >
             ← Back to Categories
           </button>
@@ -246,16 +296,30 @@ export default function App() {
             <button
               key={index}
               onClick={() => handleActivityClick(activity)}
-              className={`w-full text-left bg-white hover:bg-gray-50 border-2 ${
-                currentActivity === activity ? 'border-purple-500 bg-purple-50' : 'border-gray-200'
+              className={`w-full text-left ${adhdMode ? 'bg-slate-700 hover:bg-slate-600' : 'bg-white hover:bg-gray-50'} border-2 ${
+                currentActivity === activity 
+                  ? adhdMode 
+                    ? 'border-slate-400 bg-slate-600' 
+                    : 'border-purple-500 bg-purple-50' 
+                  : adhdMode
+                    ? 'border-slate-600'
+                    : 'border-gray-200'
               } rounded-xl p-4 transition-all`}
             >
               <div className="flex items-start gap-3">
-                <activity.icon className={`w-6 h-6 flex-shrink-0 mt-1 ${currentActivity === activity ? 'text-purple-600' : 'text-gray-600'}`} />
+                <activity.icon className={`w-6 h-6 flex-shrink-0 mt-1 ${
+                  currentActivity === activity 
+                    ? adhdMode 
+                      ? 'text-slate-300' 
+                      : 'text-purple-600' 
+                    : adhdMode
+                      ? 'text-slate-400'
+                      : 'text-gray-600'
+                }`} />
                 <div className="flex-1 space-y-1">
-                  <h3 className="font-semibold text-gray-800">{activity.name}</h3>
-                  <p className="text-sm text-gray-600">Duration: {activity.duration}</p>
-                  <p className="text-sm text-green-700 font-medium">✓ {activity.benefit}</p>
+                  <h3 className={`font-semibold ${adhdMode ? 'text-gray-100' : 'text-gray-800'}`}>{activity.name}</h3>
+                  <p className={`text-sm ${adhdMode ? 'text-gray-300' : 'text-gray-600'}`}>Duration: {activity.duration}</p>
+                  <p className={`text-sm font-medium ${adhdMode ? 'text-emerald-400' : 'text-green-700'}`}>✓ {activity.benefit}</p>
                 </div>
               </div>
             </button>
@@ -263,17 +327,21 @@ export default function App() {
         </div>
 
         {currentActivity && (
-          <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl p-6 border-2 border-purple-300">
-            <h3 className="text-xl font-bold text-gray-800 mb-3">Ready to Start?</h3>
-            <div className="bg-white rounded-xl p-4 mb-4">
+          <div className={`${
+            adhdMode 
+              ? 'bg-slate-700 border-slate-600' 
+              : 'bg-gradient-to-br from-purple-50 to-blue-50 border-purple-300'
+          } rounded-2xl p-6 border-2`}>
+            <h3 className={`text-xl font-bold ${adhdMode ? 'text-gray-100' : 'text-gray-800'} mb-3`}>Ready to Start?</h3>
+            <div className={`${adhdMode ? 'bg-slate-600' : 'bg-white'} rounded-xl p-4 mb-4`}>
               <div className="flex items-center gap-2 mb-2">
-                <currentActivity.icon className="w-6 h-6 text-purple-600" />
-                <h4 className="font-semibold text-gray-800">{currentActivity.name}</h4>
+                <currentActivity.icon className={`w-6 h-6 ${adhdMode ? 'text-slate-300' : 'text-purple-600'}`} />
+                <h4 className={`font-semibold ${adhdMode ? 'text-gray-100' : 'text-gray-800'}`}>{currentActivity.name}</h4>
               </div>
-              <p className="text-sm text-gray-600 mb-2">Duration: {currentActivity.duration}</p>
-              <p className="text-sm text-green-700 font-medium">✓ {currentActivity.benefit}</p>
+              <p className={`text-sm ${adhdMode ? 'text-gray-300' : 'text-gray-600'} mb-2`}>Duration: {currentActivity.duration}</p>
+              <p className={`text-sm font-medium ${adhdMode ? 'text-emerald-400' : 'text-green-700'}`}>✓ {currentActivity.benefit}</p>
             </div>
-            <p className="text-center text-gray-700 font-medium">
+            <p className={`text-center font-medium ${adhdMode ? 'text-gray-200' : 'text-gray-700'}`}>
               Set a timer and commit. Your brain will thank you! 🧠✨
             </p>
           </div>
@@ -283,15 +351,19 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100 p-6">
+    <div className={`min-h-screen ${
+      adhdMode 
+        ? 'bg-gradient-to-br from-gray-700 via-slate-700 to-zinc-700' 
+        : 'bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100'
+    } p-6`}>
       <div className="max-w-2xl mx-auto">
-        <div className="bg-white rounded-3xl shadow-2xl p-8">
+        <div className={`${adhdMode ? 'bg-slate-800' : 'bg-white'} rounded-3xl shadow-2xl p-8`}>
           {currentView === 'intro' && <IntroView />}
           {currentView === 'main' && <MainView />}
           {currentView === 'category' && <CategoryView />}
         </div>
 
-        <div className="text-center mt-6 text-gray-600 text-sm">
+        <div className={`text-center mt-6 text-sm ${adhdMode ? 'text-gray-400' : 'text-gray-600'}`}>
           <p>Breaking free from boredom, one action at a time 🌟</p>
         </div>
       </div>
